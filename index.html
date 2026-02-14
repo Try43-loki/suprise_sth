@@ -1,10 +1,635 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Page</title>
-</head>
-<body>
-    <h1>Welcome to my page!</h1>
-   <p>This is a simple HTML page.</p>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Eternal Memories 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        overflow-x: hidden;
+      }
+
+      /* Luxury gradient background */
+      .page {
+        min-height: 100vh;
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          #ffeef8 0%,
+          #fff5f7 50%,
+          #ffe8f0 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Animated gradient overlay */
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            circle at 30% 50%,
+            rgba(255, 182, 193, 0.3),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 50%,
+            rgba(255, 105, 180, 0.2),
+            transparent 50%
+          );
+        animation: gradientShift 15s ease-in-out infinite;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Floating hearts */
+      .hearts-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .floating-heart {
+        position: absolute;
+        font-size: 20px;
+        opacity: 0;
+        animation: floatHeart 8s ease-in-out infinite;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100px) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Content container */
+      .content {
+        position: relative;
+        z-index: 3;
+        padding: 60px 20px;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* Elegant title */
+      h1 {
+        font-family: "Playfair Display", serif;
+        color: #d4145a;
+        font-size: 56px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        text-shadow: 0 2px 20px rgba(212, 20, 90, 0.3);
+        letter-spacing: 2px;
+        animation: titleGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes titleGlow {
+        0%,
+        100% {
+          text-shadow: 0 2px 20px rgba(212, 20, 90, 0.3);
+        }
+        50% {
+          text-shadow: 0 2px 30px rgba(212, 20, 90, 0.6);
+        }
+      }
+
+      .subtitle {
+        font-size: 24px;
+        color: #666;
+        margin-bottom: 30px;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      p {
+        color: #555;
+        font-size: 18px;
+        line-height: 1.8;
+        margin: 0 auto 30px;
+      }
+
+      /* Premium button */
+      .btn {
+        border: none;
+        background: linear-gradient(135deg, #ff2f6d 0%, #d4145a 100%);
+        color: white;
+        padding: 18px 40px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 15px 35px rgba(212, 20, 90, 0.4);
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s,
+          height 0.6s;
+      }
+
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(212, 20, 90, 0.5);
+      }
+
+      .btn:active {
+        transform: translateY(-1px) scale(1.02);
+      }
+
+      /* Rain layer */
+      .rain-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      /* Premium photo styling */
+      .rain-photo {
+        position: absolute;
+        top: -150px;
+        border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        animation: rainFall linear forwards;
+      }
+
+      /* Combined falling animation with all transforms */
+      @keyframes rainFall {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5) rotate(0deg);
+          filter: brightness(1) contrast(1);
+        }
+        10% {
+          opacity: 1;
+          transform: translateY(10vh) scale(1) rotate(36deg);
+          filter: brightness(1.1) contrast(1.05);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(50vh) scale(1.1) rotate(180deg);
+          filter: brightness(1.2) contrast(1.1);
+        }
+        80% {
+          opacity: 1;
+          transform: translateY(80vh) scale(1) rotate(288deg);
+          filter: brightness(1.1) contrast(1.05);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(120vh) scale(0.7) rotate(360deg);
+          filter: brightness(1) contrast(1);
+        }
+      }
+
+      /* Decorative elements */
+      .decoration {
+        position: absolute;
+        font-size: 40px;
+        opacity: 0.15;
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .deco-1 {
+        top: 10%;
+        left: 10%;
+        animation-duration: 25s;
+      }
+      .deco-2 {
+        top: 20%;
+        right: 15%;
+        animation-duration: 30s;
+        animation-direction: reverse;
+      }
+      .deco-3 {
+        bottom: 15%;
+        left: 20%;
+        animation-duration: 35s;
+      }
+      .deco-4 {
+        bottom: 25%;
+        right: 10%;
+        animation-duration: 28s;
+        animation-direction: reverse;
+      }
+
+      /* Surprise overlay */
+      .surprise-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .surprise-overlay.active {
+        display: flex;
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .surprise-content {
+        text-align: center;
+        position: relative;
+      }
+
+      .big-heart {
+        font-size: 150px;
+        color: #ff69b4;
+        animation: heartPulse 1.5s ease-in-out infinite;
+        filter: drop-shadow(0 10px 30px rgba(255, 105, 180, 0.5));
+      }
+
+      @keyframes heartPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+      }
+
+      .love-text {
+        font-family: "Playfair Display", serif;
+        font-size: 42px;
+        color: #ff379b;
+        margin-top: 20px;
+        font-weight: 700;
+        animation: textFadeIn 1s ease 0.3s both;
+      }
+
+      @keyframes textFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .close-btn {
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #ff69b4;
+        color: #ff69b4;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+      }
+
+      .close-btn:hover {
+        transform: scale(1.1) rotate(90deg);
+        background: #ff69b4;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Decorative elements -->
+      <div class="decoration deco-1">✨</div>
+      <div class="decoration deco-2">💕</div>
+      <div class="decoration deco-3">💫</div>
+      <div class="decoration deco-4">💖</div>
+
+      <!-- Floating hearts -->
+      <div class="hearts-layer" id="heartsLayer"></div>
+
+      <!-- Photo rain -->
+      <div class="rain-layer" id="rainLayer"></div>
+
+      <!-- Main content -->
+      <div class="content">
+        <h1>My Internal Kji Kjute Words For You</h1>
+        <p class="subtitle">Message for my love</p>
+        <p>
+          For My love, you are the most beautiful person in the world. I love
+          you so much. I want to hug, kiss, and hold you forever. I want to stay
+          with you forever. Baby you are kind, beautiful in my eyes, smart and
+          kji kjute nahhh. You are my little star to shine in my life and make
+          my life more beautiful.
+        </p>
+
+        <button class="btn" id="rainBtn">
+          <span>Begin Our Journey 💫</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Surprise overlay -->
+    <div class="surprise-overlay" id="surpriseOverlay">
+      <div class="surprise-content">
+        <button class="close-btn" id="closeBtn">✕</button>
+        <div class="big-heart">💖</div>
+        <div class="love-text">Love you forever</div>
+      </div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="bgMusic" loop>
+      <source src="music/background.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      // 💖 All your beautiful photos from the images folder (86 memories!)
+      const images = [
+        "images/DSC03974 (1).jpg",
+        "images/FB_IMG_1763919331186.jpg",
+        "images/IMG20250729100003.jpg",
+        "images/IMG20250729100058.jpg",
+        "images/IMG20250804171541.jpg",
+        "images/IMG20250804171623.jpg",
+        "images/IMG20250804171635.jpg",
+        "images/IMG20250806112625.jpg",
+        "images/IMG20250811085249.jpg",
+        "images/IMG20250811085415.jpg",
+        "images/IMG20250812102016.jpg",
+        "images/IMG20250815120512.jpg",
+        "images/IMG20250816171918.jpg",
+        "images/IMG20250816171923.jpg",
+        "images/IMG20250816172019.jpg",
+        "images/IMG20250816172038.jpg",
+        "images/IMG20250818085920.jpg",
+        "images/IMG20250825105647.jpg",
+        "images/IMG20250830193908.jpg",
+        "images/IMG20250831214151.jpg",
+        "images/IMG20250914012340.jpg",
+        "images/IMG20251002141356.jpg",
+        "images/IMG20251004134239.jpg",
+        "images/IMG20251004134304.jpg",
+        "images/IMG20251004134412.jpg",
+        "images/IMG20251006185011.jpg",
+        "images/IMG20251006185017.jpg",
+        "images/IMG20251010234711.jpg",
+        "images/IMG20251013102940_01.jpg",
+        "images/IMG20251013102944_01.jpg",
+        "images/IMG20251014210532.jpg",
+        "images/IMG20251014210945.jpg",
+        "images/IMG20251018045606.jpg",
+        "images/IMG20251019161214.jpg",
+        "images/IMG20251019162912_01.jpg",
+        "images/IMG20251109125042.jpg",
+        "images/IMG20251109125107.jpg",
+        "images/IMG20251119232009.jpg",
+        "images/IMG20251120104504.jpg",
+        "images/IMG20251120110718.jpg",
+        "images/IMG20251127153911.jpg",
+        "images/IMG20251127153925.jpg",
+        "images/IMG20251127203604.jpg",
+        "images/IMG20251129080757_01.jpg",
+        "images/IMG20251206125504.jpg",
+        "images/IMG20251206125520.jpg",
+        "images/IMG20251206173913.jpg",
+        "images/IMG20251206173936.jpg",
+        "images/IMG20251207121700.jpg",
+        "images/IMG20251207121810.jpg",
+        "images/IMG20251207121935.jpg",
+        "images/IMG20251207121953.jpg",
+        "images/IMG20251207122424.jpg",
+        "images/IMG20251207175051.jpg",
+        "images/IMG20251207175435.jpg",
+        "images/IMG20251207175547.jpg",
+        "images/IMG20251207175934.jpg",
+        "images/IMG20251207181925.jpg",
+        "images/IMG20251207182026.jpg",
+        "images/IMG20251210103159.jpg",
+        "images/IMG20251211125337.jpg",
+        "images/IMG20251211125338.jpg",
+        "images/IMG20251211174814.jpg",
+        "images/IMG20251211174833.jpg",
+        "images/IMG20251212191424.jpg",
+        "images/IMG20251212191438.jpg",
+        "images/IMG20251213130117.jpg",
+        "images/IMG20251213130209.jpg",
+        "images/IMG20251213130239.jpg",
+        "images/IMG20251222160213.jpg",
+        "images/IMG20251229170743.jpg",
+        "images/IMG20251229170933.jpg",
+        "images/IMG20251229171318.jpg",
+        "images/IMG20251229175049.jpg",
+        "images/IMG20260120112101.jpg",
+        "images/IMG20260120112111.jpg",
+        "images/IMG20260120112127.jpg",
+        "images/IMG20260129130305.jpg",
+        "images/IMG20260129130310.jpg",
+        "images/IMG_20250801_011535_298.jpg",
+        "images/IMG_20250801_011535_705.jpg",
+        "images/IMG_20251202_100435_740.jpg",
+        "images/IMG_20251207_142512_367.webp",
+        "images/Screenshot_2025-09-15-02-09-44-19_572064f74bd5f9fa804b05334aa4f912.jpg",
+        "images/Screenshot_2025-11-08-18-49-09-17_f69139cffc4d135a71392e13634f144a.jpg",
+      ];
+
+      const rainLayer = document.getElementById("rainLayer");
+      const heartsLayer = document.getElementById("heartsLayer");
+      const rainBtn = document.getElementById("rainBtn");
+      const bgMusic = document.getElementById("bgMusic");
+      const surpriseOverlay = document.getElementById("surpriseOverlay");
+      const closeBtn = document.getElementById("closeBtn");
+
+      let rainInterval = null;
+
+      // Create floating hearts
+      function createFloatingHeart() {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = ["💕", "💖", "💗", "💝"][
+          Math.floor(Math.random() * 4)
+        ];
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        heart.style.animationDuration = Math.random() * 4 + 6 + "s";
+        heartsLayer.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 10000);
+      }
+
+      // Initialize hearts
+      setInterval(createFloatingHeart, 2000);
+
+      // Create rain photo
+      function createRainPhoto() {
+        const img = document.createElement("img");
+        img.className = "rain-photo";
+
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        img.src = randomImage;
+
+        // Random position
+        img.style.left = Math.random() * 90 + "%";
+
+        // Varied sizes for visual interest (mobile-optimized)
+        const size = Math.floor(Math.random() * 40) + 60; // 60px - 100px (smaller for mobile)
+        img.style.width = size + "px";
+        img.style.height = size + "px";
+
+        // Varied falling speed (slower and more elegant)
+        const duration = Math.random() * 4 + 8; // 8s - 12s (much slower)
+        img.style.animationDuration = `${duration}s`;
+
+        // Stagger the start
+        const delay = Math.random() * 0.8;
+        img.style.animationDelay = `${delay}s`;
+
+        rainLayer.appendChild(img);
+
+        // Remove after animation
+        setTimeout(
+          () => {
+            img.remove();
+          },
+          (duration + delay) * 1000,
+        );
+      }
+
+      // Start photo rain
+      function startRain() {
+        if (rainInterval) return;
+
+        rainBtn.innerHTML = "<span>Stop The Magic</span>";
+
+        // Start music
+        bgMusic.play();
+
+        // Initial burst (reduced from 15 to 5 photos)
+        for (let i = 0; i < 5; i++) {
+          setTimeout(createRainPhoto, i * 400);
+        }
+
+        // Continuous rain (slower: one photo every 1 second instead of 300ms)
+        rainInterval = setInterval(createRainPhoto, 1000);
+      }
+
+      // Stop rain
+      function stopRain() {
+        clearInterval(rainInterval);
+        rainInterval = null;
+        rainBtn.innerHTML = "<span>Begin Our Journey 💫</span>";
+
+        // Stop music
+        bgMusic.pause();
+        bgMusic.currentTime = 0; // Reset to beginning
+
+        // Show surprise overlay
+        setTimeout(() => {
+          surpriseOverlay.classList.add("active");
+        }, 300);
+      }
+
+      // Close surprise overlay
+      function closeSurprise() {
+        surpriseOverlay.classList.remove("active");
+      }
+
+      // Event listeners
+      rainBtn.addEventListener("click", () => {
+        if (!rainInterval) {
+          startRain();
+        } else {
+          stopRain();
+        }
+      });
+
+      closeBtn.addEventListener("click", closeSurprise);
+
+      // Preload images for smooth animation
+      images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    </script>
+  </body>
 </html>
